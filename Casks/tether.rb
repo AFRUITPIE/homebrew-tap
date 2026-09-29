@@ -7,6 +7,7 @@ cask "tether" do
   desc "Native client for Claude Code, locally or over SSH"
   homepage "https://github.com/AFRUITPIE/tether-app"
 
+  conflicts_with cask: "tether@beta"
   depends_on macos: :golden_gate
 
   app "Tether.app"
