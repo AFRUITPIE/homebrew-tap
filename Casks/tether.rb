@@ -4,10 +4,10 @@ cask "tether" do
 
   url "https://github.com/AFRUITPIE/tether-app/releases/download/v#{version}/Tether-#{version}.zip"
   name "Tether"
-  desc "Native client for Claude Code on this Mac and over SSH"
+  desc "Native client for Claude Code, locally or over SSH"
   homepage "https://github.com/AFRUITPIE/tether-app"
 
-  depends_on macos: ">= :golden_gate"
+  depends_on macos: :golden_gate
 
   app "Tether.app"
 
