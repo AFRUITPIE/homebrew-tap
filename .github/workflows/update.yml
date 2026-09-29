@@ -1,10 +1,10 @@
 name: Update Tether
 
-# Moves the cask to Tether's newest release: its version, and the SHA-256 of its zip. Hourly, and by
+# Moves the cask to Tether's newest release: its version, and the SHA-256 of its zip. Daily, and by
 # hand; a release is published by tether-app's own workflow when a version bump is merged there.
 on:
   schedule:
-    - cron: "23 * * * *"
+    - cron: "37 9 * * *"
   workflow_dispatch:
 
 permissions:
