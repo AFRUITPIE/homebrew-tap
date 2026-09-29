@@ -21,7 +21,11 @@ jobs:
           tag=$(gh release view --repo AFRUITPIE/tether-app --json tagName -q .tagName)
           version=${tag#v}
           current=$(sed -n 's/^  version "\(.*\)"/\1/p' Casks/tether.rb)
-          if [ "$version" = "$current" ]; then echo "Tether $current is current."; exit 0; fi
+          # Only a version made of numbers goes into the cask, and only forward: a release deleted,
+          # or an older one marked latest, doesn't take the cask back.
+          [[ $version =~ ^[0-9]+(\.[0-9]+)*$ ]] || { echo "::error::Unexpected tag $tag"; exit 1; }
+          newest=$(printf '%s\n' "$current" "$version" | sort -V | tail -n1)
+          if [ "$newest" = "$current" ]; then echo "Tether $current is current."; exit 0; fi
           gh release download "$tag" --repo AFRUITPIE/tether-app --pattern "Tether-$version.zip" --dir "$RUNNER_TEMP"
           sha=$(sha256sum "$RUNNER_TEMP/Tether-$version.zip" | cut -d' ' -f1)
           sed -i "s/^  version \".*\"/  version \"$version\"/; s/^  sha256 \".*\"/  sha256 \"$sha\"/" Casks/tether.rb
