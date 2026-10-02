@@ -1,6 +1,6 @@
 cask "tether" do
-  version "0.1.7"
-  sha256 "07ffa892dd4652dc41d7f6387d1fe1f914444b6cf95134b536be4976c79cf875"
+  version "0.1.8"
+  sha256 "0f96a5cf4566a4d2fb30dcb22b8f3a62ca1885a446b031dd538999b79908a046"
 
   url "https://github.com/AFRUITPIE/tether-app/releases/download/v#{version}/Tether-#{version}.zip"
   name "Tether"
