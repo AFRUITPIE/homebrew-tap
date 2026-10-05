@@ -1,6 +1,6 @@
-name: Update Tether
+name: Update Sundown
 
-# Moves the cask to Tether's newest release: its version, and the SHA-256 of its zip. Daily, and by
+# Moves the cask to Sundown's newest release: its version, and the SHA-256 of its zip. Daily, and by
 # hand; a release is published by tether-app's own workflow when a version bump is merged there.
 on:
   schedule:
@@ -20,16 +20,16 @@ jobs:
         run: |
           tag=$(gh release view --repo AFRUITPIE/tether-app --json tagName -q .tagName)
           version=${tag#v}
-          current=$(sed -n 's/^  version "\(.*\)"/\1/p' Casks/tether.rb)
+          current=$(sed -n 's/^  version "\(.*\)"/\1/p' Casks/sundown.rb)
           # Only a version made of numbers goes into the cask, and only forward: a release deleted,
           # or an older one marked latest, doesn't take the cask back.
           [[ $version =~ ^[0-9]+(\.[0-9]+)*$ ]] || { echo "::error::Unexpected tag $tag"; exit 1; }
           newest=$(printf '%s\n' "$current" "$version" | sort -V | tail -n1)
-          if [ "$newest" = "$current" ]; then echo "Tether $current is current."; exit 0; fi
-          gh release download "$tag" --repo AFRUITPIE/tether-app --pattern "Tether-$version.zip" --dir "$RUNNER_TEMP"
-          sha=$(sha256sum "$RUNNER_TEMP/Tether-$version.zip" | cut -d' ' -f1)
-          sed -i "s/^  version \".*\"/  version \"$version\"/; s/^  sha256 \".*\"/  sha256 \"$sha\"/" Casks/tether.rb
+          if [ "$newest" = "$current" ]; then echo "Sundown $current is current."; exit 0; fi
+          gh release download "$tag" --repo AFRUITPIE/tether-app --pattern "Sundown-$version.zip" --dir "$RUNNER_TEMP"
+          sha=$(sha256sum "$RUNNER_TEMP/Sundown-$version.zip" | cut -d' ' -f1)
+          sed -i "s/^  version \".*\"/  version \"$version\"/; s/^  sha256 \".*\"/  sha256 \"$sha\"/" Casks/sundown.rb
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -am "Tether $version"
+          git commit -am "Sundown $version"
           git push
