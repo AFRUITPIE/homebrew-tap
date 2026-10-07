@@ -1,6 +1,6 @@
 cask "sundown" do
-  version "0.3.0"
-  sha256 "aba33f431303fae0b3130c8dc29a45c367c21e2279968a257c207ef80c1ff91f"
+  version "0.3.1"
+  sha256 "1807be5c950ba3552e451a73457ec7202598405506c88ba714b2ddc242cb9eaa"
 
   url "https://github.com/AFRUITPIE/tether-app/releases/download/v#{version}/Sundown-#{version}.zip"
   name "Sundown"
