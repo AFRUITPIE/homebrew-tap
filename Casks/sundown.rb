@@ -1,6 +1,6 @@
 cask "sundown" do
-  version "0.3.3"
-  sha256 "1c4e2744b96d9fd9c1a38c79967ddc49fc02ba93713582d0647a190f13a1b28a"
+  version "0.3.4"
+  sha256 "f3b50d770a61be5604d2c60f2c03b0f12ea89d3f5e1b426f2264c5db0ef68adc"
 
   url "https://github.com/AFRUITPIE/Sundown/releases/download/v#{version}/Sundown-#{version}.zip"
   name "Sundown"
